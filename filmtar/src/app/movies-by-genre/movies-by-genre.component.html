@@ -1,0 +1,22 @@
+<main>
+    <div class="container">
+        <button class="btn btn-link" (click)="goBack()">Back</button>
+        <div *ngIf=moviesForGenre>
+            <h3>Most popular {{selectedGenre.name}} movies</h3>
+            <div class="row">
+                <div class="col-md-3" *ngFor="let movie of moviesForGenre">
+                    <div class="card shadow-sm mb-4" >
+                        <img *ngIf="movie?.poster_path" src="https://image.tmdb.org/t/p/w400{{movie?.poster_path}}">
+                        <img *ngIf="!(movie?.poster_path)" src="assets/images/500w.png" class="card-img-top" alt="placeholder">
+                        <div class="card-body">
+                            <a routerLink="/movie/{{movie.id}}">
+                                <p>{{ movie.title }}</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

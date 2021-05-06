@@ -1,0 +1,69 @@
+<main *ngIf="movie">
+    <div class="container">
+        <button class="btn btn-link" (click)="goBack()">Back</button>
+        
+        <h3>{{movie.title}}</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <img *ngIf="movie?.poster_path" class="mb-3 mt-3 ml-5" src="https://image.tmdb.org/t/p/w400{{movie?.poster_path}}">
+                <img *ngIf="!(movie?.poster_path)" class="mb-3 mt-3" alt="placeholder" src="assets/images/500w.png">
+            </div>
+
+            <div class="col-md-6">
+                <div class="my-4">
+                    <div *ngFor="let genre of movie.genres" class="bg-primary text-white text-center rounded d-inline mr-1 p-1">{{genre.name}}</div>
+                </div>
+                <hr>
+                <div>
+                    <h4>Rating</h4>
+                    <p class="ml-3">{{movie.vote_average}}/10 (no. of votes: {{movie.vote_count}})</p>
+                </div>
+                
+                <hr>
+                <h4>Overview</h4>
+                <div>
+                    <h5>Summary</h5>
+                    <p class="ml-3">{{movie.overview}}</p>
+                </div>
+                
+                <div *ngIf=movie.revenue>
+                    <h5 >Revenue</h5>
+                    <p class="ml-3">{{movie.revenue | currency}}</p>
+                </div>
+                
+                <div>
+                    <h5>Runtime</h5>
+                    <p class="ml-3">{{movie.runtime}} minutes</p>
+                </div>
+
+                <div>
+                    <h5>Release date</h5>
+                    <p class="ml-3">{{movie.release_date | date:'yyyy. MM. dd.'}}</p>
+                </div>
+                <hr>
+
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ml-5">
+                    <h3 class="my-3">Cast</h3>
+                    <div class="row">
+                        <div *ngFor="let actor of cast" class="col-2">
+                            <div class="card mb-1 shadow-sm">
+                                <img *ngIf="actor?.profile_path" src="https://image.tmdb.org/t/p/w400{{actor?.profile_path}}">
+                                <img *ngIf="!(actor?.profile_path)" class="mb-3 mt-3" alt="placeholder" src="assets/images/500w.png">
+                                <div class="card-body">
+                                    <strong><a routerLink="/actor/{{actor.id}}">{{actor.name}}</a></strong>
+                                    as: {{actor.character}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main > 
