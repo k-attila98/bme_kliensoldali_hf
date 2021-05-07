@@ -15,19 +15,19 @@ import { MovieService } from '../services/movie.service';
 export class MovieSearchComponent implements OnInit {
 
   movies$: Observable<Movie[]>;
-  private searchTerms = new Subject<string>();
 
-  constructor(private route: ActivatedRoute, private router: Router, private movieService: MovieService) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void 
   {
   }
 
-  search(term: string): void
-  {
-    this.searchTerms.next(term);
-  }
-
+  /**
+   * Függvény, amivel a search/:term route-ra navigálunk, hogy a filmek címei között lehessen keresni
+   * paraméterként teszi fel a route-ra a keresendő szöveget, ezt a MovieService fogja kiolvasni
+   * ha nincs semmi megadva, visszanavigál a főoldalra
+   * @param term a szöveg amire rá legyen keresve
+   */
   makeSearch(term: string): void
   {
     if(term != null && term != "")

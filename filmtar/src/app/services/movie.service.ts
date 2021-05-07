@@ -1,25 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Movie } from '../movie';
 import { Cast } from '../cast';
 import { Genre } from '../genre';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { stringify } from '@angular/compiler/src/util';
-import { HttpModule, Request, Response, Headers, Http } from '@angular/http';
-
-/*
-const MOVIES: Movie[] = [
-  {id: 1, title: 'skere'},
-  {id: 2, title: 'lmao'},
-  {id: 3, title: 'ali'},
-  {id: 4, title: 'turbo'},
-  {id: 5, title: 'titan'}
-];
-*/
-
-const httpOptions = {
-  headers: new HttpHeaders({ "Content-Type": "application/json" })
-};
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -32,31 +16,49 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Küld az API számára egy GET kérést, 
+   * elkéri a népszerű filmek listáját
+   * @param page megadjuk hanyadik oldalt szeretnénk látni
+   * @returns az adott oldalon lévő népszerű filmek, any-ként castlva a subscribeon belül .results alatt elérhető
+   */
   getMovies(page: number) : Observable<Movie[]>
   {
     let moviesUrl = `${this.moviesBaseUrl}popular?api_key=${this.apiKey}&language=en-US&page=${page}`;
-    return this.http.get<any[]>(moviesUrl);
+    return this.http.get<Movie[]>(moviesUrl);
   }
   
+  /**
+   * Küld az API számára egy GET kérést, 
+   * elkéri egy id-val megadott film adatlapját
+   * @param id a film id-ja amit lekérünk
+   * @returns a lekért film adatlapja
+   */
   getMovie(id: number): Observable<Movie>
   {
-    /*
-    const movie = of(MOVIES.find(m => m.id == id));
-    return movie;*/
-
     let movieUrl = `${this.moviesBaseUrl}${id}?api_key=${this.apiKey}&language=en-US`;
     return this.http.get<Movie>(movieUrl);
   }
 
+  /**
+   * Küld az API számára egy GET kérést, 
+   * elkéri az összes filmet az adott kifejezéssel a címben
+   * @param term a keresett kifejezés
+   * @param page megadjuk hanyadik oldalt szeretnénk látni
+   * @returns az adott oldalon lévő keresett filmek, any-ként castlva a subscribeon belül .results alatt elérhető
+   */
   searchMovies (term: string, page: number): Observable<Movie[]>
   {
-    /*
-    const movies = of(MOVIES.filter(m => m.title.match(term)));
-    return movies;*/
     let searchUrl = `${this.moviesSearchUrl}?api_key=${this.apiKey}&language=en-US&query=${term}&page=${page}`;
-    return this.http.get<any[]>(searchUrl);
+    return this.http.get<Movie[]>(searchUrl);
   }
 
+  /**
+   * Küld az API számára egy GET kérést, 
+   * elkéri egy keresett film szereplőit
+   * @param id az keresett film id-ja
+   * @returns az adott film szereplőinek listája, .cast alatt elérhető
+   */
   getCast(id: number): Observable<Cast[]>
   {
     
@@ -66,6 +68,11 @@ export class MovieService {
     return this.http.get<Cast[]>(castUrl);
   }
 
+  /**
+   * Küld az API számára egy GET kérést, 
+   * elkéri az összes elérhető kategóriát
+   * @returns az összes kategória
+   */
   getGenres(): Observable<Genre[]>
   {
     let genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${this.apiKey}&language=en-US`;
@@ -73,6 +80,13 @@ export class MovieService {
     return this.http.get<Cast[]>(genreUrl);
   }
   
+  /**
+   * Küld az API számára egy GET kérést, 
+   * elkéri a kategóriában található összes filmet
+   * @param id a kategória id-ja
+   * @param page az oldal száma
+   * @returns az adott odlalon lévő, egy kategóriába tartozó filmek listája
+   */
   searchByGenre(id: number, page: number): Observable<Movie[]>
   {
     let genreSearchUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=${id}&with_original_language=en&page=${page}`

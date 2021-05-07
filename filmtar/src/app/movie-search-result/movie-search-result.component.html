@@ -26,8 +26,8 @@
             </div>
         </div>
         <div class="row mb-4">
-            <a *ngIf="(page-1 > 0)" class="btn btn-link" routerLink="search/{{query}}/page/{{page-1}}">Previous page</a>
-            <a class="btn btn-link ml-auto" routerLink="search/{{query}}/page/{{page+1}}">Next page</a>
+            <a *ngIf="(page-1 > 0)" class="btn btn-link" routerLink="/search/{{query}}/page/{{page-1}}">Previous page</a>
+            <a *ngIf="(total_pages > page)" class="btn btn-link ml-auto" routerLink="/search/{{query}}/page/{{page+1}}">Next page</a>
         </div>
     </div>
 </div>

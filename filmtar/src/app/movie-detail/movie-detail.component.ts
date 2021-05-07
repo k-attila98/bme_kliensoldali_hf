@@ -23,6 +23,11 @@ export class MovieDetailComponent implements OnInit
     this.getMovie();
   }
 
+  /**
+   * Függvény, amivel az MovieService-en keresztül
+   * elkérhetjük az egyik bizonyos film adatlapját, a szereplőkkel együtt
+   * Az id a route-ban lévő :id-ból kerül ki
+   */
   getMovie()
   {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -30,6 +35,10 @@ export class MovieDetailComponent implements OnInit
     this.movieService.getCast(id).subscribe((cast:any) => this.cast = cast.cast);
   }
 
+  /**
+   * Oldalról való elnavigáláshoz szükséges,
+   * az előző oldalra lép
+   */
   goBack(): void {
     this.location.back();
   }

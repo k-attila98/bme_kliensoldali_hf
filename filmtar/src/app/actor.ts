@@ -1,3 +1,7 @@
+/**
+ * Egy színész adatlapjához szükséges model
+ * ActorService használja
+ */
 export interface Actor
 {
     adult: boolean;

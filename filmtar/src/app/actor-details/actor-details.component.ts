@@ -22,6 +22,11 @@ export class ActorDetailsComponent implements OnInit {
     this.getActor()
   }
 
+  /**
+   * Függvény, amivel az ActorService-en keresztül
+   * elkérhetjük az egyik bizonyos színész profilját
+   * Az id a route-ban lévő :id-ból kerül ki
+   */
   getActor()
   {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -34,6 +39,10 @@ export class ActorDetailsComponent implements OnInit {
     });
   }
 
+  /**
+   * Oldalról való elnavigáláshoz szükséges,
+   * az előző oldalra lép
+   */
   goBack(): void {
     this.location.back();
   }

@@ -1,3 +1,7 @@
+/**
+ * Egy szereplő szerepeinek adatait tároló modell
+ * ActorService használja
+ */
 export interface Role
 {
     adult: boolean;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { Genre } from '../genre';
 import { Movie } from '../movie';
 import { MovieService } from '../services/movie.service';
@@ -18,8 +17,14 @@ export class MoviesByGenreComponent implements OnInit {
   genres: Genre[];
   moviesForGenre: Movie[];
   
-  constructor(private route: ActivatedRoute, private router: Router, private movieService: MovieService, private location: Location) { }
+  constructor(private route: ActivatedRoute, private router: Router, private movieService: MovieService) { }
 
+  /**
+   * Elkéri a filmeket egy kategóriában
+   * Route változásra való feliratkozás
+   * kért oldal számának kinyerése
+   * a kért oldal számának függvényben elkérni a filmeket egy kategóriában
+   */
   ngOnInit(): void 
   {
 
@@ -27,11 +32,14 @@ export class MoviesByGenreComponent implements OnInit {
       this.page = Number(this.route.snapshot.paramMap.get('pagenum')) ? Number(this.route.snapshot.paramMap.get('pagenum')) : 1;
       this.getMoviesByGenre(this.page);
     });
-
-    //this.page = 1;
-    //this.getMoviesByGenre(this.page);
   }
 
+  /**
+   * Elkéri a MovieService-től az id-vel megadott kategóriában lévő filmeket
+   * és keresett kategóriának a nevét is beállítja
+   * az id-t a route :id-jából nyeri ki
+   * @param page megadjuk hogy melyik oldalt szeretnénk látni
+   */
   getMoviesByGenre(page: number)
   {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -48,6 +56,11 @@ export class MoviesByGenreComponent implements OnInit {
     
   }
 
+  /**
+   * Lapozás megvalósításához szükséges
+   * kiszámolja az új oldal számát, majd ezt elkéri
+   * @param moveBy megadjuk hogy mennyivel lépjünk arrébb
+   */
   goToPage(moveBy: number)
   {
     let newPage = this.page + moveBy;
@@ -57,6 +70,10 @@ export class MoviesByGenreComponent implements OnInit {
     }
   }
 
+  /**
+   * Oldalról való elnavigáláshoz szükséges,
+   * a kategóráik oldalra lép át
+   */
   goBack()
   {
     this.router.navigate(['/genres']);

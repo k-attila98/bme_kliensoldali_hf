@@ -1,8 +1,8 @@
 <main>
     <div class="container">
-        <button class="btn btn-link" (click)="goBack()">Back</button>
+        <button class="btn btn-outline-primary btn-sm" (click)="goBack()">Back</button>
         
-        <h3>{{actor.name}}</h3>
+        <h3 class="mt-3">{{actor.name}}</h3>
         <div class="row">
             <div class="col-md-6">
                 <img *ngIf="actor?.profile_path" class="mb-3 mt-3 ml-5" src="https://image.tmdb.org/t/p/w400{{actor?.profile_path}}">

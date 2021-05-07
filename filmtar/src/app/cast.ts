@@ -1,3 +1,7 @@
+/**
+ * Egy filmhez tartozó szereplők modellje
+ * MovieService használja
+ */
 export interface Cast
 {
     adult: boolean;
