@@ -50,18 +50,20 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="ml-5">
-                    <h3 class="my-3">Cast</h3>
-                    <div class="row">
-                        <div *ngFor="let actor of cast" class="col-2">
-                            <div class="card mb-1 shadow-sm">
-                                <img *ngIf="actor?.profile_path" src="https://image.tmdb.org/t/p/w400{{actor?.profile_path}}">
-                                <img *ngIf="!(actor?.profile_path)" class="mb-3 mt-3" alt="placeholder" src="assets/images/500w.png">
-                                <div class="card-body">
-                                    <strong><a routerLink="/actor/{{actor.id}}">{{actor.name}}</a></strong>
-                                    <p *ngIf=actor.character>as: {{actor.character}}</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 overflow-scroll">
+                    <div class="ml-5">
+                        <h3 class="my-3">Cast</h3>
+                        <div class="row flex-row flex-nowrap overflow-auto mb-4">
+                            <div *ngFor="let actor of cast" class="col-2 d-inline">
+                                <div class="card mb-1 shadow-sm">
+                                    <img *ngIf="actor?.profile_path" src="https://image.tmdb.org/t/p/w400{{actor?.profile_path}}">
+                                    <img *ngIf="!(actor?.profile_path)" class="mb-3 mt-3" alt="placeholder" src="assets/images/500w.png">
+                                    <div class="card-body">
+                                        <strong><a routerLink="/actor/{{actor.id}}">{{actor.name}}</a></strong>
+                                        <p *ngIf=actor.character>as: {{actor.character}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

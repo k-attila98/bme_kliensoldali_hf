@@ -44,8 +44,8 @@
             <div class="col-md-12">
                 <div class="ml-5">
                     <h3 class="my-3">Roles</h3>
-                    <div class="row">
-                        <div *ngFor="let role of roles" class="col-2">
+                    <div class="row flex-row flex-nowrap overflow-auto mb-4">
+                        <div *ngFor="let role of roles" class="col-2 d-inline">
                             <div class="card mb-1 shadow-sm">
                                 <img *ngIf="role?.poster_path" src="https://image.tmdb.org/t/p/w400{{role?.poster_path}}">
                                 <img *ngIf="!(role?.poster_path)" class="mb-3 mt-3" alt="placeholder" src="assets/images/500w.png">
