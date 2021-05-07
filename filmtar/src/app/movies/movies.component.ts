@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../movie';
-import { MovieService } from '../movie.service';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movies',
@@ -21,7 +21,9 @@ export class MoviesComponent implements OnInit {
 
   getMovies(): void
   {
-    this.movieService.getMovies().subscribe((movies:any) => {this.movies = movies.results;});
+    this.movieService.getMovies().subscribe((movies:any) => {
+      this.movies = movies.results;
+    });
   }
 
 }

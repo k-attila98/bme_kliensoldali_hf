@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Genre } from '../genre';
 import { Movie } from '../movie';
-import { MovieService } from '../movie.service';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-genres',

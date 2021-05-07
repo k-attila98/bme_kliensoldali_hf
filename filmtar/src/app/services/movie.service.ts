@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Movie } from './movie';
-import { Cast } from './cast';
-import { Genre } from './genre';
+import { Movie } from '../movie';
+import { Cast } from '../cast';
+import { Genre } from '../genre';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { stringify } from '@angular/compiler/src/util';
 import { HttpModule, Request, Response, Headers, Http } from '@angular/http';
