@@ -2,11 +2,13 @@
     <div class="container">
         <div>
             <h3>Search movies by genre...</h3>
+            <hr>
             <ul class="list-unstyled">
-                <li class="ml-3" *ngFor="let genre of genres">
+                <li class="ml-3 mb-1" *ngFor="let genre of genres">
                     <a class="link-secodary" routerLink="/genres/{{genre.id}}">{{genre.name}}</a>
                 </li>
             </ul>
+            <hr>
         </div>
     </div>
 </main>

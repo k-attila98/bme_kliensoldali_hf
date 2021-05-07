@@ -23,22 +23,26 @@
                 <h4>Overview</h4>
                 <div>
                     <h5>Summary</h5>
-                    <p class="ml-3">{{movie.overview}}</p>
+                    <p *ngIf=movie.overview class="ml-3">{{movie.overview}}</p>
+                    <p *ngIf=!movie.overview class="ml-3">No data.</p>
                 </div>
                 
                 <div *ngIf=movie.revenue>
                     <h5 >Revenue</h5>
-                    <p class="ml-3">{{movie.revenue | currency}}</p>
+                    <p *ngIf=movie.revenue class="ml-3">{{movie.revenue | currency}}</p>
+                    <p *ngIf=!movie.revenue class="ml-3">No data.</p>
                 </div>
                 
                 <div>
                     <h5>Runtime</h5>
-                    <p class="ml-3">{{movie.runtime}} minutes</p>
+                    <p *ngIf=movie.runtime class="ml-3">{{movie.runtime}} minutes</p>
+                    <p *ngIf=!movie.runtime class="ml-3">No data.</p>
                 </div>
 
                 <div>
                     <h5>Release date</h5>
-                    <p class="ml-3">{{movie.release_date | date:'yyyy. MM. dd.'}}</p>
+                    <p *ngIf=movie.release_date class="ml-3">{{movie.release_date | date:'yyyy. MM. dd.'}}</p>
+                    <p *ngIf=!movie.release_date class="ml-3">No data.</p>
                 </div>
                 <hr>
 
@@ -57,7 +61,7 @@
                                 <img *ngIf="!(actor?.profile_path)" class="mb-3 mt-3" alt="placeholder" src="assets/images/500w.png">
                                 <div class="card-body">
                                     <strong><a routerLink="/actor/{{actor.id}}">{{actor.name}}</a></strong>
-                                    as: {{actor.character}}
+                                    <p *ngIf=actor.character>as: {{actor.character}}</p>
                                 </div>
                             </div>
                         </div>

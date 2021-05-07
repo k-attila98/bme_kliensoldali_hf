@@ -21,14 +21,6 @@ export class MovieSearchComponent implements OnInit {
 
   ngOnInit(): void 
   {
-    /*
-    this.searchTerms.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((term: string) => this.movieService.searchMovies(term).pipe((response:any) => this.movies$ = response.results))
-    );*/
-
-    //console.log(this.movies$);
   }
 
   search(term: string): void
@@ -38,6 +30,14 @@ export class MovieSearchComponent implements OnInit {
 
   makeSearch(term: string): void
   {
-    this.router.navigate(['/search', term]);
+    if(term != null && term != "")
+    {
+      this.router.navigate(['/search', term]);
+    }
+    else
+    {
+      this.router.navigate(['/']);
+    }
+
   }
 }
