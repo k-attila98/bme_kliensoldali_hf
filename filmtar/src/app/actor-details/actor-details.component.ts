@@ -12,6 +12,7 @@ import { Role } from '../role';
 })
 export class ActorDetailsComponent implements OnInit {
 
+  errorMessage: string;
   actor: Actor;
   roles: Role[];
 
@@ -25,7 +26,12 @@ export class ActorDetailsComponent implements OnInit {
   {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.actorService.getActor(id).subscribe(actor => this.actor = actor);
-    this.actorService.getRolesForActor(id).subscribe((roles:any) => this.roles = roles.cast)
+    this.actorService.getRolesForActor(id).subscribe((roles:any) => {
+      this.roles = roles.cast;
+    },
+    error => {
+      this.errorMessage = <any>error;
+    });
   }
 
   goBack(): void {

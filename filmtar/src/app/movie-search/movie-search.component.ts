@@ -34,13 +34,10 @@ export class MovieSearchComponent implements OnInit {
   search(term: string): void
   {
     this.searchTerms.next(term);
-    //console.log(term);
   }
 
   makeSearch(term: string): void
   {
-    console.log(['/search', term]);
     this.router.navigate(['/search', term]);
-    //this.movieService.searchMovies(term).subscribe((response:any) => this.movies$ = response.results);
   }
 }

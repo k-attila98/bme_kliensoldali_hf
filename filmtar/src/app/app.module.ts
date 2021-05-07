@@ -19,11 +19,14 @@ import { MovieSearchResultComponent } from './movie-search-result/movie-search-r
 
 const routes: Routes = [
   { path: '', component: MoviesComponent },
+  { path: 'popular/page/:pagenum', component: MoviesComponent },
   { path: 'movie/:id', component: MovieDetailComponent },
   { path: 'genres', component: GenresComponent },
   { path: 'genres/:id', component: MoviesByGenreComponent },
+  { path: 'genres/:id/page/:pagenum', component: MoviesByGenreComponent },
   { path: 'actor/:id', component: ActorDetailsComponent },
-  { path: 'search/:query', component: MovieSearchResultComponent }
+  { path: 'search/:query', component: MovieSearchResultComponent },
+  { path: 'search/:query/page/:pagenum', component: MovieSearchResultComponent }
 ];
 
 @NgModule({

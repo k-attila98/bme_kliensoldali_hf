@@ -32,9 +32,9 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies() : Observable<Movie[]>
+  getMovies(page: number) : Observable<Movie[]>
   {
-    let moviesUrl = `${this.moviesBaseUrl}popular?api_key=${this.apiKey}&language=en-US`;
+    let moviesUrl = `${this.moviesBaseUrl}popular?api_key=${this.apiKey}&language=en-US&page=${page}`;
     return this.http.get<any[]>(moviesUrl);
   }
   
@@ -48,12 +48,12 @@ export class MovieService {
     return this.http.get<Movie>(movieUrl);
   }
 
-  searchMovies (term: string): Observable<Movie[]>
+  searchMovies (term: string, page: number): Observable<Movie[]>
   {
     /*
     const movies = of(MOVIES.filter(m => m.title.match(term)));
     return movies;*/
-    let searchUrl = `${this.moviesSearchUrl}?api_key=${this.apiKey}&language=en-US&query=${term}`;
+    let searchUrl = `${this.moviesSearchUrl}?api_key=${this.apiKey}&language=en-US&query=${term}&page=${page}`;
     return this.http.get<any[]>(searchUrl);
   }
 
@@ -73,9 +73,9 @@ export class MovieService {
     return this.http.get<Cast[]>(genreUrl);
   }
   
-  searchByGenre(id: number): Observable<Movie[]>
+  searchByGenre(id: number, page: number): Observable<Movie[]>
   {
-    let genreSearchUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=${id}&with_original_language=en`
+    let genreSearchUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apiKey}&language=en-US&sort_by=popularity.desc&page=1&with_genres=${id}&with_original_language=en&page=${page}`
 
     return this.http.get<Movie[]>(genreSearchUrl);
   }

@@ -12,9 +12,22 @@
                             <a routerLink="/movie/{{movie.id}}">
                                 <p>{{ movie.title }}</p>
                             </a>
+                            <div class="m-1 row d-flex">
+                                <div>
+                                    <small>{{movie.vote_average}}/10 ({{movie.vote_count}})</small>
+                                </div>
+                                <div class="ml-auto">
+                                    <small >Popularity: {{ movie.popularity }}</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="row">
+                <a *ngIf="(page-1 > 0)" class="btn btn-link" routerLink="/genres/{{selectedGenre.id}}/page/{{page-1}}">Previous page</a>
+                <a class="btn btn-link ml-auto" routerLink="/genres/{{selectedGenre.id}}/page/{{page+1}}">Next page</a>
             </div>
         </div>
     </div>

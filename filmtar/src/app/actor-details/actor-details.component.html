@@ -13,24 +13,28 @@
                 <hr>
                 <div>
                     <h4>Biography</h4>
-                    <p class="ml-3">{{actor.biography}}</p>
+                    <p *ngIf=actor.biography class="ml-3">{{actor.biography}}</p>
+                    <p *ngIf=!actor.biography class="ml-3">{{actor.biography}}</p>
                 </div>
                 
                 <hr>
                 <h4>Overview</h4>
                 <div>
                     <h5>Born</h5>
-                    <p class="ml-3">{{actor.birthday | date:'yyyy. MM. dd.'}}</p>
+                    <p *ngIf=actor.birthday class="ml-3">{{actor.birthday | date:'yyyy. MM. dd.'}}</p>
+                    <p *ngIf=!actor.birthday class="ml-3">No data.</p> 
                 </div>
 
                 <div *ngIf=actor.deathday>
                     <h5>Death</h5>
-                    <p class="ml-3">{{actor.deathday | date:'yyyy. MM. dd.'}}</p>
+                    <p *ngIf=actor.deathday class="ml-3">{{actor.deathday | date:'yyyy. MM. dd.'}}</p>
+                    <p *ngIf=!actor.deathday class="ml-3">No data.</p> 
                 </div>
                 
                 <div>
                     <h5>Place of birth</h5>
-                    <p class="ml-3">{{actor.place_of_birth}}</p>  
+                    <p *ngIf=actor.place_of_birth class="ml-3">{{actor.place_of_birth}}</p> 
+                    <p *ngIf=!actor.place_of_birth class="ml-3">No data.</p> 
                 </div>
                 <hr>
             </div>
