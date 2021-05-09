@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
-import { distinctUntilChanged } from 'rxjs/operators';
-import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Movie } from '../movie';
-import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movie-search',
