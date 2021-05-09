@@ -2,7 +2,7 @@
     <div class="container">
         <button class="btn btn-outline-primary btn-sm" (click)="goBack()">Back</button>
         
-        <h3 class="mt-3">{{actor.name}}</h3>
+        <h3 class="mt-3">{{actor?.name}}</h3>
         <div class="row">
             <div class="col-md-6">
                 <img *ngIf="actor?.profile_path" class="mb-3 mt-3 ml-5" src="https://image.tmdb.org/t/p/w400{{actor?.profile_path}}">
@@ -13,28 +13,28 @@
                 <hr>
                 <div>
                     <h4>Biography</h4>
-                    <p *ngIf=actor.biography class="ml-3">{{actor.biography}}</p>
-                    <p *ngIf=!actor.biography class="ml-3">{{actor.biography}}</p>
+                    <p *ngIf=actor?.biography class="ml-3">{{actor?.biography}}</p>
+                    <p *ngIf=!actor?.biography class="ml-3">{{actor?.biography}}</p>
                 </div>
                 
                 <hr>
                 <h4>Overview</h4>
                 <div>
                     <h5>Born</h5>
-                    <p *ngIf=actor.birthday class="ml-3">{{actor.birthday | date:'yyyy. MM. dd.'}}</p>
-                    <p *ngIf=!actor.birthday class="ml-3">No data.</p> 
+                    <p *ngIf=actor?.birthday class="ml-3">{{actor?.birthday | date:'yyyy. MM. dd.'}}</p>
+                    <p *ngIf=!actor?.birthday class="ml-3">No data.</p> 
                 </div>
 
-                <div *ngIf=actor.deathday>
+                <div *ngIf=actor?.deathday>
                     <h5>Death</h5>
-                    <p *ngIf=actor.deathday class="ml-3">{{actor.deathday | date:'yyyy. MM. dd.'}}</p>
-                    <p *ngIf=!actor.deathday class="ml-3">No data.</p> 
+                    <p *ngIf=actor?.deathday class="ml-3">{{actor?.deathday | date:'yyyy. MM. dd.'}}</p>
+                    <p *ngIf=!actor?.deathday class="ml-3">No data.</p> 
                 </div>
                 
                 <div>
                     <h5>Place of birth</h5>
-                    <p *ngIf=actor.place_of_birth class="ml-3">{{actor.place_of_birth}}</p> 
-                    <p *ngIf=!actor.place_of_birth class="ml-3">No data.</p> 
+                    <p *ngIf=actor?.place_of_birth class="ml-3">{{actor?.place_of_birth}}</p> 
+                    <p *ngIf=!actor?.place_of_birth class="ml-3">No data.</p> 
                 </div>
                 <hr>
             </div>
@@ -46,12 +46,12 @@
                     <h3 class="my-3">Roles</h3>
                     <div class="row flex-row flex-nowrap overflow-auto mb-4">
                         <div *ngFor="let role of roles" class="col-2 d-inline">
-                            <div class="card mb-1 shadow-sm">
+                            <div *ngIf=role class="card mb-1 shadow-sm">
                                 <img *ngIf="role?.poster_path" src="https://image.tmdb.org/t/p/w400{{role?.poster_path}}">
                                 <img *ngIf="!(role?.poster_path)" class="mb-3 mt-3" alt="placeholder" src="assets/images/500w.png">
                                 <div class="card-body">
-                                    <strong><a routerLink="/movie/{{role.id}}">{{role.title}}</a></strong>
-                                    starring: {{role.character}}
+                                    <strong><a routerLink="/movie/{{role.id}}">{{role?.title}}</a></strong>
+                                    starring: {{role?.character}}
                                 </div>
                             </div>
                         </div>

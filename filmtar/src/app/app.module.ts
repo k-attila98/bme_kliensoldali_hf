@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
@@ -16,6 +16,7 @@ import { ActorDetailsComponent } from './actor-details/actor-details.component';
 import { ActorService } from './services/actor.service';
 import { MoviesByGenreComponent } from './movies-by-genre/movies-by-genre.component';
 import { MovieSearchResultComponent } from './movie-search-result/movie-search-result.component';
+import { HttpErrorInterceptor } from './error-handler/http-error.interceptor';
 
 const routes: Routes = [
   { path: '', component: MoviesComponent },
@@ -49,7 +50,12 @@ const routes: Routes = [
   ],
   providers: [
     MovieService,
-    ActorService
+    ActorService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

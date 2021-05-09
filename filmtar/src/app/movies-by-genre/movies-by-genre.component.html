@@ -1,8 +1,8 @@
 <main>
     <div class="container">
         <button class="btn btn-outline-primary btn-sm" (click)="goBack()">Back</button>
-        <div *ngIf=moviesForGenre>
-            <h3 class="mt-3">Most popular {{selectedGenre.name}} movies</h3>
+        <div *ngIf=moviesForGenre >
+            <h3 class="mt-3">Most popular {{selectedGenre?.name}} movies</h3>
             <div class="row">
                 <div class="col-md-3" *ngFor="let movie of moviesForGenre">
                     <div class="card shadow-sm mb-4" >
@@ -10,14 +10,14 @@
                         <img *ngIf="!(movie?.poster_path)" src="assets/images/500w.png" class="card-img-top" alt="placeholder">
                         <div class="card-body">
                             <a routerLink="/movie/{{movie.id}}">
-                                <p>{{ movie.title }}</p>
+                                <p>{{ movie?.title }}</p>
                             </a>
                             <div class="m-1 row d-flex">
                                 <div>
-                                    <small>{{movie.vote_average}}/10 ({{movie.vote_count}})</small>
+                                    <small>{{movie?.vote_average}}/10 ({{movie?.vote_count}})</small>
                                 </div>
                                 <div class="ml-auto">
-                                    <small >Popularity: {{ movie.popularity }}</small>
+                                    <small >Popularity: {{ movie?.popularity }}</small>
                                 </div>
                             </div>
                         </div>
@@ -28,6 +28,11 @@
             <div class="row mb-4">
                 <a *ngIf="(page-1 > 0)" class="btn btn-link" routerLink="/genres/{{selectedGenre.id}}/page/{{page-1}}">Previous page</a>
                 <a *ngIf="(total_pages > page)" class="btn btn-link ml-auto" routerLink="/genres/{{selectedGenre.id}}/page/{{page+1}}">Next page</a>
+            </div>
+        </div>
+        <div *ngIf=!moviesForGenre >
+            <div class="row">
+                Couldn't reach server!
             </div>
         </div>
     </div>

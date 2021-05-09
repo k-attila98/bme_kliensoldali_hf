@@ -11,14 +11,14 @@
                     <img *ngIf="!(movie?.poster_path)" src="assets/images/500w.png" class="card-img-top" alt="placeholder">
                     <div class="card-body">
                         <a routerLink="/movie/{{movie.id}}">
-                            <p>{{ movie.title }}</p>
+                            <p>{{ movie?.title }}</p>
                         </a>
                         <div class="m-1 row d-flex">
                             <div>
-                                <small>{{movie.vote_average}}/10 ({{movie.vote_count}})</small>
+                                <small>{{movie?.vote_average}}/10 ({{movie?.vote_count}})</small>
                             </div>
                             <div class="ml-auto">
-                                <small >Popularity: {{ movie.popularity }}</small>
+                                <small >Popularity: {{ movie?.popularity }}</small>
                             </div>
                         </div>
                     </div>
